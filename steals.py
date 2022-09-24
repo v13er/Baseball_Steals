@@ -14,6 +14,7 @@ def input_signs():
                 continue
             case _:
                 signs.append(prompt)
+        
     return signs
 
 def process_signs(signs):
@@ -29,7 +30,15 @@ def steal_sequences(sign_symbols):
     sequences = []
     while sequence:
         prompt = input("Please input a sequence of symbols (Write done when finished)\n> ")
-        sqnc = tuple(prompt.lower())
+        sqnc = []
+        for sqc in range(0, len(prompt)):
+            try:
+                two_chars = prompt[sqc] + prompt[sqc+1]
+            except:
+                pass
+            else:
+                sqnc.append(two_chars)
+            print(sqc)
         match prompt:
             case "done":
                 break
