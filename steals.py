@@ -17,10 +17,15 @@ def input_signs():
 
     return signs
 
+def process_signs(signs):
+    sign_symbols = {}
+    for sign in range(0, len(signs)):
+        sign_symbols[chr(sign+65)] = signs[sign]        
+    return sign_symbols
 
 def main():
     signs = input_signs()
-    print(signs)
+    process_signs(signs)
 
 
 if __name__ == '__main__':
