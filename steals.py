@@ -21,7 +21,7 @@ def input_signs():
 def main():
     signs = input_signs()
     print(signs)
-    
+
 
 if __name__ == '__main__':
     try:
