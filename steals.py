@@ -8,12 +8,14 @@ def input_signs():
         prompt = prompt.lower()
         if prompt == "exit":
             break
+        signs.append(prompt)
 
     return signs
 
 
 def main():
     signs = input_signs()
+    print(signs)
 
 if __name__ == '__main__':
     main()
