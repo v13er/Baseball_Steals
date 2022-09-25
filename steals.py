@@ -21,7 +21,7 @@ def process_signs(signs):
     #Assigns each motion a symbol
     sign_symbols = {}
     for sign in range(0, len(signs)):
-        sign_symbols[chr(sign+65)] = signs[sign]        
+        sign_symbols[chr(sign+97)] = signs[sign]        
     return sign_symbols
 
 def steal_sequences(sign_symbols):
@@ -30,25 +30,29 @@ def steal_sequences(sign_symbols):
     sequences = []
     while sequence:
         prompt = input("Please input a sequence of symbols (Write done when finished)\n> ")
+        prompt = prompt.lower()
         sqnc = []
         for sqc in range(0, len(prompt)):
-            if prompt[sqc] in sign_symbols.values():
-                try:
-                    two_chars = prompt[sqc] + prompt[sqc+1]
-                except:
-                    pass
-                else:
-                    sqnc.append(two_chars)
-                match prompt:
-                    case "done":
-                        return sequences
-                    case "":
-                        continue
-                    case _:
-                        sequences.append(sqnc)
-            else:
-                print("You inputted an invalid sign, please try again!")
-                return "INVALID"
+            match prompt:
+                case "done":
+                    return sequences
+                case "":
+                    continue
+                case _:
+                    if prompt[sqc] in sign_symbols.keys():
+                        try:
+                            two_chars = prompt[sqc] + prompt[sqc+1]
+                        except:
+                            pass
+                        else:
+                            sqnc.append(two_chars)
+
+                    else:
+                        print("You inputted an invalid sign, please try again!")
+                        return "INVALID"
+        sequences.append(sqnc)
+
+
 def main():
     signs = input_signs()
     sign_symbols = process_signs(signs)
@@ -58,9 +62,9 @@ def main():
     while invalid:
         sequences = steal_sequences(sign_symbols)
         if sequences != "INVALID":
-            Invalid = False 
+            invalid = False 
+    print(sequences)
             
-
 if __name__ == '__main__':
     try:
         main()
