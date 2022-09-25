@@ -32,29 +32,34 @@ def steal_sequences(sign_symbols):
         prompt = input("Please input a sequence of symbols (Write done when finished)\n> ")
         sqnc = []
         for sqc in range(0, len(prompt)):
-            try:
-                two_chars = prompt[sqc] + prompt[sqc+1]
-            except:
-                pass
+            if prompt[sqc] in sign_symbols.values():
+                try:
+                    two_chars = prompt[sqc] + prompt[sqc+1]
+                except:
+                    pass
+                else:
+                    sqnc.append(two_chars)
+                match prompt:
+                    case "done":
+                        return sequences
+                    case "":
+                        continue
+                    case _:
+                        sequences.append(sqnc)
             else:
-                sqnc.append(two_chars)
-            print(sqc)
-        match prompt:
-            case "done":
-                break
-            case "":
-                continue
-            case _:
-                sequences.append(sqnc)
-
-    return sequences
-
+                print("You inputted an invalid sign, please try again!")
+                return "INVALID"
 def main():
     signs = input_signs()
     sign_symbols = process_signs(signs)
     print(f'You sign symbols are {sign_symbols} (Remember these)!')
-    sequences = steal_sequences(sign_symbols)
-    print(sequences)
+
+    Invalid = True
+    while Invalid:
+        sequences = steal_sequences(sign_symbols)
+        if sequences != "INVALID":
+            Invalid = False 
+            
 
 if __name__ == '__main__':
     try:
