@@ -54,8 +54,8 @@ def main():
     sign_symbols = process_signs(signs)
     print(f'You sign symbols are {sign_symbols} (Remember these)!')
 
-    Invalid = True
-    while Invalid:
+    invalid = True
+    while invalid:
         sequences = steal_sequences(sign_symbols)
         if sequences != "INVALID":
             Invalid = False 
