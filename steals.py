@@ -67,7 +67,6 @@ def steal_data(sequences):
                     sequence_data[str(sqc)] = False
                     invalid = False
 
-    print(sequence_data)
     return sequence_data
 
 
@@ -86,7 +85,10 @@ def main():
             invalid = False 
 
     steal_info = steal_data(sequences)
-
+    print("\n#######################################################")
+    print("If any of this info is invalid, please press ctrl + c and rerun the program")
+    print(f'The steal data is\n {steal_info} (confirm them)')
+    print("#######################################################")
 
             
 if __name__ == '__main__':
