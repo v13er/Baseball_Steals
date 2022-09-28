@@ -48,22 +48,46 @@ def steal_sequences(sign_symbols):
                             sqnc.append(two_chars)
 
                     else:
-                        print("You inputted an invalid sign, please try again!")
+                        print("You inputted an invalid sign, please try again!\n")
                         return "INVALID"
         sequences.append(sqnc)
+
+def steal_data(sequences):
+    sequence_data = {}
+    for sqc in sequences:
+        invalid = True
+        while invalid:
+            prompt = input(f"Was {sqc} a steal?")
+            prompt = prompt.lower()
+            match prompt:
+                case "y" | "yes":
+                    sequence_data[str(sqc)] = True
+                    invalid = False
+                case "n" | "no":
+                    sequence_data[str(sqc)] = False
+                    invalid = False
+
+    print(sequence_data)
+    return sequence_data
 
 
 def main():
     signs = input_signs()
     sign_symbols = process_signs(signs)
+
+    print("\n#######################################################")
     print(f'You sign symbols are {sign_symbols} (Remember these)!')
+    print("#######################################################")
 
     invalid = True
     while invalid:
         sequences = steal_sequences(sign_symbols)
         if sequences != "INVALID":
             invalid = False 
-    print(sequences)
+
+    steal_info = steal_data(sequences)
+
+
             
 if __name__ == '__main__':
     try:
