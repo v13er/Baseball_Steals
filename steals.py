@@ -57,14 +57,15 @@ def steal_data(sequences):
     for sqc in sequences:
         invalid = True
         while invalid:
-            prompt = input(f"Was {sqc} a steal?")
+            prompt = input(f"Was {sqc} a steal?\n> ")
             prompt = prompt.lower()
+            key_name = ''.join(sqc)
             match prompt:
                 case "y" | "yes":
-                    sequence_data[str(sqc)] = True
+                    sequence_data[key_name]= True
                     invalid = False
                 case "n" | "no":
-                    sequence_data[str(sqc)] = False
+                    sequence_data[key_name] = False
                     invalid = False
 
     return sequence_data
@@ -86,11 +87,11 @@ def main():
 
     steal_info = steal_data(sequences)
     print("\n#######################################################")
-    print("If any of this info is invalid, please press ctrl + c and rerun the program")
+    print("If any of this info is invalid, please press ctrl + c and rerun the program.\n")
     print(f'The steal data is\n {steal_info} (confirm them)')
     print("#######################################################")
 
-            
+    #note to self, make temporary variable to check for keys
 if __name__ == '__main__':
     try:
         main()
