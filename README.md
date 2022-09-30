@@ -1,7 +1,14 @@
 # baseball_steals
 Based on a mark rober video about baseball steals. Wanted to try it out.
 
-(Sorry if I commit a lot lol, my first real github repo and wanna use git a lot)
-
-TODO:
+# TODO:
+Required: 
 Iterate over each list to see the duplicate that caused the steal
+
+Quality of life:
+Redo variable naming conventions
+Add comments explaining code
+
+Future:
+Add gui support with kivy. 
+Allow more than 52 characters (Without them being misc characters)
