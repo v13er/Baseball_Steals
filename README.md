@@ -8,6 +8,7 @@ Iterate over each list to see the duplicate that caused the steal
 Quality of life:
 Redo variable naming conventions
 Add comments explaining code
+Add support to save files to json
 
 Future:
 Add gui support with kivy. 
