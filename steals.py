@@ -3,17 +3,17 @@ def input_signs():
     signs = []
 
     #Gets all the signals
-    _signals = True
-    while _signals:
-        _prompt = input("Please input a sign (Write exit to stop)\n> ")
-        _prompt = _prompt.lower()
-        match _prompt:
+    signals = True
+    while signals:
+        prompt = input("Please input a sign (Write exit to stop)\n> ")
+        prompt = prompt.lower()
+        match prompt:
             case "exit":
                 break
             case "":
                 continue
             case _:
-                signs.append(_prompt)
+                signs.append(prompt)
         
     return signs
 
@@ -26,22 +26,22 @@ def process_signs(signs):
 
 def steal_sequences(sign_symbols):
     #Gets all the sequences
-    _sequence = True
+    sequence = True
     sequences = []
-    while _sequence:
-        _prompt = input("Please input a sequence of symbols (Write done when finished)\n> ")
-        _prompt = _prompt.lower()
+    while sequence:
+        prompt = input("Please input a sequence of symbols (Write done when finished)\n> ")
+        prompt = prompt.lower()
         sqnc = []
-        for sqc in range(0, len(_prompt)):
-            match _prompt:
+        for sqc in range(0, len(prompt)):
+            match prompt:
                 case "done":
                     return sequences
                 case "":
                     continue
                 case _:
-                    if _prompt[sqc] in sign_symbols.keys():
+                    if prompt[sqc] in sign_symbols.keys():
                         try:
-                            two_chars = _prompt[sqc] + _prompt[sqc+1]
+                            two_chars = prompt[sqc] + prompt[sqc+1]
                         except:
                             pass
                         else:
@@ -52,23 +52,24 @@ def steal_sequences(sign_symbols):
                         return "INVALID"
         sequences.append(sqnc)
 
+#APPROACH MAY NOT WORK, PROBABLY GONNA BE REWRITTEN
 def steal_data(sequences):
-    sequence_data = {}
+    sequence_data = []
     for sqc in sequences:
-        _invalid = True
-        while _invalid:
-            _prompt = input(f"Was {sqc} a steal?\n> ")
-            _prompt = _prompt.lower()
-            _key_name = ''.join(sqc)
-            match _prompt:
+        invalid = True
+        while invalid:
+            prompt = input(f"Was {sqc} a steal?")
+            prompt = prompt.lower()
+            match prompt:
                 case "y" | "yes":
-                    sequence_data[_key_name]= True
-                    _invalid = False
+                    sequence_data.append(sqc)
+                    invalid = False
                 case "n" | "no":
-                    sequence_data[_key_name] = False
-                    _invalid = False
+                    invalid = False
 
+    print(sequence_data)
     return sequence_data
+
 
 
 def main():
@@ -85,13 +86,10 @@ def main():
         if sequences != "INVALID":
             invalid = False 
 
-    steal_info = steal_data(sequences)
-    print("\n#######################################################")
-    print("If any of this info is invalid, please press ctrl + c and rerun the program.\n")
-    print(f'The steal data is\n {steal_info} (confirm them)')
-    print("#######################################################")
+    steals = steal_data(sequences)
 
-    #note to self, make temporary variable to check for keys
+
+            
 if __name__ == '__main__':
     try:
         main()
